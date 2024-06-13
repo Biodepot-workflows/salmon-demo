@@ -1,0 +1,10 @@
+{
+    "workflows": [
+        {
+            "name": "Salmon Demo",
+            "type": "RNA",
+            "location": "./workflow/salmon_demo",
+            "checksum": "xxxxx"
+        }
+    ]
+}
