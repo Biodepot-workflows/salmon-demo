@@ -1,0 +1,16 @@
+name: Generate_Hash
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code repository
+        uses: actions/checkout@v4
+      - name: Calculate sha256sum of folders containing .ows files
+        run: |
+          docker pull biodepot/launcher-utils:latest
+          find . -type f -name '*.ows' -printf '%h\n' | LC_ALL=C sort -u --ignore-case | while read -r dir; do hash=$(docker run -v ".":"/workspace/mnt" biodepot/launcher-utils:latest "hash" /workspace/mnt/$dir); echo "$hash"; done > hash.txt
+      - name: Add hash to workflows.json
+        run: |
+          cat hash.txt
