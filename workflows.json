@@ -1,10 +1,10 @@
 {
-    "workflows": [
-        {
-            "name": "Salmon Demo",
-            "type": "RNA",
-            "location": "./workflow/salmon_demo",
-            "checksum": "xxxxx"
-        }
-    ]
+  "workflows": [
+    {
+      "name": "Salmon Demo",
+      "type": "RNA",
+      "location": "./workflow/salmon_demo",
+      "checksum": "9cfd77396653f319b71ea0bd40bb5d546b4ba3eeb91d8fac3c56092e5b86073d"
+    }
+  ]
 }
