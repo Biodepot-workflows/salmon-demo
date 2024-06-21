@@ -15,13 +15,15 @@ jobs:
         run: |
           cat hash.txt | while read -r line; do
             hash="$(echo $line | awk '{print $1}')"
-            echo $hash
             workflow="$(echo $line | awk '{print $2}')"
-            echo $workflow
             workflow_index="$(cat workflows.json | jq '[.workflows[].location]|index("'$workflow'")')"
-            echo $workflow_index
             workflow_at_index="$(cat workflows.json | jq 'del(.workflows['$workflow_index'].checksum)' | jq '.workflows['$workflow_index'] += {"checksum": "'$hash'"}')"
-            echo $workflow_at_index
             echo $workflow_at_index | jq "." > workflows.json
           done
-          cat workflows.json
+      - name: Commit workflows.json
+        run: |
+          git config --global user.email "action@github.com"info
+          git config --global user.name "GitHub Action"
+          git add workflows.json
+          git commit -m "Updated hash information in workflows.json."
+          git push
