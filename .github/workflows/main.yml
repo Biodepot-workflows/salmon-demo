@@ -13,7 +13,6 @@ jobs:
           find . -type f -name '*.ows' -printf '%h\n' | LC_ALL=C sort -u --ignore-case | while read -r dir; do hash=$(docker run -v ".":"/workspace/mnt" biodepot/launcher-utils:latest "hash" /workspace/mnt/$dir); echo "$hash"; done > hash.txt
       - name: Add hash to workflows.json
         run: |
-          cat workflows.json
           cat hash.txt | while read -r line; do
             hash="$(echo $line | awk '{print $1}')"
             workflow="$(echo $line | awk '{print $2}')"
@@ -21,4 +20,4 @@ jobs:
             workflow_at_index="$(cat workflows.json | jq 'del(.workflows['$workflow_index'].checksum)' | jq '.workflows['$workflow_index'] += {"checksum": "'$hash'"}')"
             echo $workflow_at_index | jq "." > workflows.json
           done
-          cat workflows.js
+          cat workflows.json
