@@ -1,5 +1,7 @@
 # [Open in Codespaces](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=758695654&skip_quickstart=true)
 
+Click the link above to open the workflow in GitHub Codespaces.
+
 For more information on how to use Bwb, click this [LINK](https://biodepot.github.io/training/).
 
 # Salmon Demo
